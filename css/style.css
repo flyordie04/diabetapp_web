@@ -1,0 +1,19 @@
+/* REJESTRACJA */
+#register_container {
+	text-align:center;
+	padding:20px;
+	}
+
+#register{
+	max-width:50%;
+	margin:0 auto;
+	border-style:ridge;
+	background-color:#f0f0f0;
+	text-align:left;
+	padding:20px;
+}
+
+#btnRegister{
+	width:100%;
+	text-align:center;
+}
