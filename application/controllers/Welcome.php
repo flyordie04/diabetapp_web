@@ -27,4 +27,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function __construct()
+	{
+		parent::__construct();
+		if(!$this -> session -> userdata('user_id'))
+			redirect('<?php echo base_url(); ?>logowanie');
+	}
+
 }

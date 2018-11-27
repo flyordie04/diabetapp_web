@@ -6,19 +6,19 @@
  * Time: 19:00
  */
 
-require_once '../../vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/DiabetApp/vendor/autoload.php';
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 
 
-class Users
+class Users extends CI_Model
 {
 	protected $database;
 	protected $dbname = 'doctors';
 
 	public function __construct()
 	{
-		$acc = ServiceAccount::fromJsonFile('../../secret/diabetapp-9579f-02b3d7ec6132.json');
+		$acc = ServiceAccount::fromJsonFile('secret/diabetapp-9579f-02b3d7ec6132.json');
 		$firebase = (new Factory) -> withServiceAccount($acc) -> create();
 
 		$this -> database = $firebase -> getDatabase();
@@ -34,13 +34,19 @@ class Users
 		}
 	}
 
-	public function insert(array $data) {
+	public function insert(String $email, String $first_name, String $surname, String $city, String $place, String $phone_number) {
 
-		if(empty($data) || !isset($data)){return FALSE; }
+		if(empty($email) || !isset($email)){return FALSE; }
 
-		foreach($data as $key => $value){
-			$this -> database -> getReference() -> getChild($this -> dbname)-> getChild($key) -> set($value);
-		}
+			$this -> database -> getReference() -> getChild($this -> dbname) -> push([
+				'email' => $email,
+				'first_name' => $first_name,
+				'surname' => $surname,
+				'city' => $city,
+				'place' => $place,
+				'phone_number' => $phone_number
+			]);
+
 
 		return TRUE;
 	}

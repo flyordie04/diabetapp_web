@@ -1,3 +1,15 @@
+html,body{
+	height: 100%;
+	margin:0;
+}
+#wrap{
+	min-height:100%;
+}
+#main{
+	overflow:auto;
+	padding-bottom:50px;
+}
+
 /* REJESTRACJA */
 #register_container {
 	text-align:center;
@@ -5,15 +17,48 @@
 	}
 
 #register{
-	max-width:50%;
-	margin:0 auto;
-	border-style:ridge;
-	background-color:#f0f0f0;
-	text-align:left;
+	max-width:40%;
+	margin:10px auto;
 	padding:20px;
 }
+
+#title{
+	font-family: "Book Antiqua";
+	padding:20px;
+}
+
+#form{
+	padding: 20px 0 20px 0;
+
+}.form-control{
+	margin-bottom: 20px;
+ }
 
 #btnRegister{
 	width:100%;
 	text-align:center;
+	margin-bottom: 20px;
+}
+
+/* LOGOWANIE */
+
+#remember{
+	padding-bottom: 20px;
+}
+#form_login{
+	padding-top: 20px;
+
+}.form-control{
+	 margin-bottom: 20px;
+ }
+
+
+
+ /* STOPKA */
+#footer{
+	margin-top: -50px;
+	color:#f2f2f2;
+	position: relative;
+	clear:both;
+	height: 50px;
 }

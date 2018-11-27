@@ -55,3 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['strona_glowna'] = 'homepage/index';
+$route['logowanie'] = 'login';
+$route['rejestracja'] = 'register';
+$route['potwierdzenie'] = 'confirmation';
