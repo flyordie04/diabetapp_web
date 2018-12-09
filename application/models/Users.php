@@ -9,6 +9,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/DiabetApp/vendor/autoload.php';
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
+use Firebase\Auth\Token\Exception\InvalidToken;
 
 
 class Users extends CI_Model
@@ -62,6 +63,30 @@ class Users extends CI_Model
 		}
 	}
 
+	public function getUser(){
+		$acc = ServiceAccount::fromJsonFile('secret/diabetapp-9579f-02b3d7ec6132.json');
+
+		$firebase = (new Factory)
+			->withServiceAccount($acc)
+			->create();
+
+		$idTokenString = '...';
+
+		try {
+			$verifiedIdToken = $firebase->getAuth()->verifyIdToken($idTokenString, true);
+		} catch (InvalidToken $e) {
+			echo $e->getMessage();
+		}
+
+		$uid = $verifiedIdToken->getClaim('sub');
+		$user = $firebase->getAuth()->getUser($uid);
+
+		//$user = $firebase-> getAuth() ;
+
+
+
+		return $user;
+	}
 }
 
 $users = new Users();

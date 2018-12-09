@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="wrap">
 	<div id="main" class="container clear-top">
 		<div class="container" id="register_container">
-			<div id="register">
+			<form method="post" id="register">
 				<img src="<?php echo base_url(); ?>images/splash_without.png" height="100" class="d-inline-block align-top" alt="">
 				<div id="title">
 					<h3>Logowanie</h3>
@@ -24,12 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div id="remember">
 					Zapomniałeś hasła?
 				</div>
-				<button type="button" class="btn btn-primary" onclick="login()" id="btnRegister">Zaloguj się!</button>
+				<input type="submit" name="submit" class="btn btn-primary" onclick="login()" id="btnRegister" value="Zaloguj się!">
 				Nie masz konta? <a href="<?php echo base_url(); ?>rejestracja">Zarejestruj się!</a>
+			</form>
 			</div>
 		</div>
 	</div>
-</div>
+</body>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
 <script src="../../js/jquery-3.3.1.min.js"></script>

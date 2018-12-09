@@ -9,6 +9,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
 </head>
 <body>
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+	let config = {
+		apiKey: "AIzaSyA6YCmZiBsq1-hlMTBMmMzWePy2va10kks",
+		authDomain: "diabetapp-9579f.firebaseapp.com",
+		databaseURL: "https://diabetapp-9579f.firebaseio.com",
+		projectId: "diabetapp-9579f",
+		storageBucket: "diabetapp-9579f.appspot.com",
+		messagingSenderId: "316734541658"
+	};
+	firebase.initializeApp(config);
+
+	function register() {
+		let email = document.getElementById("email").value;
+		let password = document.getElementById("password").value;
+		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+			alert(error.message);
+		})
+	}
+
+</script>
 <div id="wrap">
 	<div id="main" class="container clear-top">
 		<div class="container" id="register_container">
@@ -39,27 +63,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
-<script src="<?php echo base_url(); ?>js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
 
-		let config = {
-			apiKey: "AIzaSyA6YCmZiBsq1-hlMTBMmMzWePy2va10kks",
-			authDomain: "diabetapp-9579f.firebaseapp.com",
-			databaseURL: "https://diabetapp-9579f.firebaseio.com",
-			projectId: "diabetapp-9579f",
-			storageBucket: "diabetapp-9579f.appspot.com",
-			messagingSenderId: "316734541658"
-		};
-		firebase.initializeApp(config);
-
-		function register() {
-				let email = document.getElementById("email").value;
-				let password = document.getElementById("password").value;
-				firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-					alert(error.message);
-				})
-		}
-
-</script>
