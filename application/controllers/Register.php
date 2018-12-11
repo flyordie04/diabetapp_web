@@ -6,16 +6,27 @@ class Register extends CI_Controller {
 
 	public function index()
 	{
-		if($this -> input -> post('submit') != NULL){
-			$postData = $this->input->post();
-			$classObj = new Users();
-			if($classObj -> getUser() != null) {
-			$classObj->insert($postData['email'],$postData['first_name'],$postData['surname'],$postData['city'],$postData['place'],$postData['phone_number']);
-			$postData = null;
-				redirect('potwierdzenie');
-			}
+		if($this->firebase->getCurrentUser())
+		{
+			show_error('Jesteś zalogowany');
 		}
 
+		if($this -> input -> post('submit') != NULL){
+			$postData = $this->input->post();
+			$status = $this->users->register($postData['email'],$postData['password'],$postData['first_name'],$postData['surname'],$postData['city'],$postData['place'],$postData['phone_number']);
+
+			if($status['status']=='ok')
+			{
+				redirect('potwierdzenie');
+			}
+			else
+			{
+				var_dump($status);
+			}
+
+		}
+
+		$this->load->view('header');
 		$this->load->view('register');
 		$this->load->view('footer');
 	}

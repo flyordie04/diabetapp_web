@@ -19,6 +19,9 @@ die('This file is used for development purposes only.');
  */
 
 /**
+ * @property Firebase			 $firebase
+ * @property Users				 $users
+ *
  * @property CI_Benchmark        $benchmark                           This class enables you to mark points and calculate the time difference between them. Memory consumption can also be displayed.
  * @property CI_Calendar         $calendar                            This class enables the creation of calendars
  * @property CI_Cache            $cache                               Caching Class
@@ -74,6 +77,9 @@ class CI_Controller {
 }
 
 /**
+ * @property Firebase			 $firebase
+ * @property Users				 $users
+ *
  * @property CI_Benchmark        $benchmark                           This class enables you to mark points and calculate the time difference between them. Memory consumption can also be displayed.
  * @property CI_Calendar         $calendar                            This class enables the creation of calendars
  * @property CI_Cache            $cache                               Caching Class

@@ -35,6 +35,32 @@ class Users extends CI_Model
 		}
 	}
 
+	public function register(String $email, String $password, String $first_name, String $surname, String $city, String $place, String $phone_number)
+	{
+		$ret = [];
+
+		try
+		{
+			$this->firebase->instance->getAuth()->createUserWithEmailAndPassword($email, $password);
+			$this->firebase->instance->getDatabase()->getReference()->getChild($this -> dbname)->push([
+				'email' => $email,
+				'first_name' => $first_name,
+				'surname' => $surname,
+				'city' => $city,
+				'place' => $place,
+				'phone_number' => $phone_number
+			]);
+			$ret['status'] = 'ok';
+		}
+		catch (Exception $e)
+		{
+			$ret['status'] = 'err';
+			$ret['error'] = $e->getMessage();
+		}
+
+		return $ret;
+	}
+
 	public function insert(String $email, String $first_name, String $surname, String $city, String $place, String $phone_number) {
 
 		if(empty($email) || !isset($email)){return FALSE; }
@@ -62,31 +88,6 @@ class Users extends CI_Model
 			return FALSE;
 		}
 	}
-
-	public function getUser(){
-		$acc = ServiceAccount::fromJsonFile('secret/diabetapp-9579f-02b3d7ec6132.json');
-
-		$firebase = (new Factory)
-			->withServiceAccount($acc)
-			->create();
-
-		$idTokenString = '...';
-
-		try {
-			$verifiedIdToken = $firebase->getAuth()->verifyIdToken($idTokenString, true);
-		} catch (InvalidToken $e) {
-			echo $e->getMessage();
-		}
-
-		$uid = $verifiedIdToken->getClaim('sub');
-		$user = $firebase->getAuth()->getUser($uid);
-
-		//$user = $firebase-> getAuth() ;
-
-
-
-		return $user;
-	}
 }
 
-$users = new Users();
+$users = new Users();// aaa jeszcze jedna rzecz patrz na to
